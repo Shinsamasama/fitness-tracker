@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>運動の進捗状況</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="progress-page">
+    <header class="progress-header">
+        <h1>運動の進捗状況</h1>
+    </header>
+
+    <main class="progress-content">
+        <section class="progress-graph">
+            <img src="{{ graph_url }}" alt="運動の進捗グラフ" class="progress-image">
+        </section>
+    </main>
+</body>
+</html>

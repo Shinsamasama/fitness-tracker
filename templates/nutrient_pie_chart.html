@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>栄養素のカロリー比率</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="nutrient-page">
+    <header class="nutrient-header">
+        <h1>栄養素のカロリー比率</h1>
+    </header>
+
+    <main class="nutrient-content">
+        <section class="nutrient-graph">
+            <img src="{{ graph_url }}" alt="栄養素のカロリー比率円グラフ" class="nutrient-image">
+        </section>
+    </main>
+</body>
+</html>

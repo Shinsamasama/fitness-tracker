@@ -1,0 +1,26 @@
+<!-- templates/set_goal.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>目標設定</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body-goal">
+    <div class="goal-container">
+        <h1 class="goal-title">目標を設定する</h1>
+        <form method="POST" action="{{ url_for('set_goal') }}" class="goal-form">
+            <label for="target_calories" class="goal-label">目標摂取カロリー:</label>
+            <input type="number" id="target_calories" name="target_calories" class="goal-input" required>
+            
+            <label for="target_workout_duration" class="goal-label">目標運動時間（分）:</label>
+            <input type="number" id="target_workout_duration" name="target_workout_duration" class="goal-input" required>
+            
+            <label for="target_date" class="goal-label">目標期限:</label>
+            <input type="date" id="target_date" name="target_date" class="goal-input" required>
+            
+            <button type="submit" class="goal-button">設定</button>
+        </form>
+    </div>
+</body>
+</html>

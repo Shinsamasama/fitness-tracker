@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー登録</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body-design">
+    <div id="register-container" class="auth-container">
+        <h1 class="auth-title">ユーザー登録</h1>
+        <form method="POST" action="/register" class="auth-form">
+            <label for="username" class="form-label">ユーザー名</label>
+            <input type="text" name="username" id="username" class="form-input" required>
+            
+            <label for="email" class="form-label">メールアドレス</label>
+            <input type="email" name="email" id="email" class="form-input" required>
+            
+            <label for="password" class="form-label">パスワード</label>
+            <input type="password" name="password" id="password" class="form-input" required>
+            
+            <button type="submit" class="auth-button">登録</button>
+        </form>
+        
+         <!-- フラッシュメッセージの表示エリア -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-message-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div class="bg-white p-4 rounded shadow-lg">
+                    {% for category, message in messages %}
+                        <p class="text-red-500 font-semibold">{{ message }}</p>
+                    {% endfor %}
+                    <button onclick="closeModal()" class="mt-4 text-blue-500">閉じる</button>
+                </div>
+            </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <script>
+        function closeModal() {
+            document.getElementById('flash-message-modal').style.display = 'none';
+        }
+
+        setTimeout(closeModal, 5000)
+    </script>
+</body>
+</html>

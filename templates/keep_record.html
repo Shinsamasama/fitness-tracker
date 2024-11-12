@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-50 font-sans leading-normal tracking-normal">
+
+    <!-- ナビゲーションバー -->
+    <nav class="bg-green-600 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-xl font-bold">Fitness Tracker</h1>
+            <div class="flex space-x-4">
+                <a href="{{ url_for('index') }}" class="text-white text-sm sm:text-base hover:text-green-300 pl-3">ホーム</a>
+                <a href="{{ url_for('profile') }}" class="text-white text-sm sm:text-base hover:text-green-300">ユーザー情報</a>
+                <a href="{{ url_for('logout') }}" class="text-white text-sm sm:text-base hover:text-green-300">ログアウト</a>
+            </div>
+        </div>
+    </nav>
+
+     <!-- フラッシュメッセージ表示エリア -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+         <div id="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <script>
+        setTimeout(function() {
+            var flashMessages = document.getElementById("flash-messages");
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 3000);
+    </script>
+
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto mt-8 p-4">
+
+        <!-- ワークアウト記録 -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-green-700 mb-4">フィットネストラッキング</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h3 class="text-lg font-semibold text-green-700 mb-4">ワークアウトを記録</h3>
+                <form action="/log_workout" method="post" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700">運動の種類</label>
+                        <select name="workout_type" id="workout_type" onchange="calculateCalories()" class="w-full border-gray-300 rounded-lg p-2">
+                            <option value="walking">ウォーキング</option>
+                            <option value="running">ランニング</option>
+                            <option value="cycling">サイクリング</option>
+                            <option value="hard_working_out">筋トレ（高重度）</option>
+                            <option value="light_working_out">筋トレ（軽め）</option>
+                            <!-- 他の運動種類もここに追加 -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">時間 (分)</label>
+                        <input type="number" id="duration" name="duration" oninput="calculateCalories()" class="w-full border-gray-300 rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">体重 (kg)</label>
+                        <input type="number" id="weight" name="weight" oninput="calculateCalories()" class="w-full border-gray-300 rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">推定消費カロリー (kcal)</label>
+                        <input type="text" id="calories" name="calories" readonly class="w-full border-gray-300 rounded-lg p-2 bg-gray-100">
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full">記録</button>
+                </form>
+
+                <script>
+                    function calculateCalories() {
+                        const activityType = document.getElementById('workout_type').value;
+                        const duration = parseFloat(document.getElementById('duration').value) || 0;
+                        const weight = parseFloat(document.getElementById('weight').value) || 0;
+
+                          // MET値を運動の種類に応じて設定
+                        const MET_values = {
+                            'walking': 3.5,
+                            'running': 7.0,
+                            'cycling': 4.0,
+                            'hard_working_out': 7.0,
+                            'light_working_out': 5.0
+                        };
+                        const met = MET_values[activityType] || 1;
+
+                        const calories = met * weight * (duration / 60);
+                        document.getElementById('calories').value = calories.toFixed(2);
+   
+                    }
+                </script>
+
+
+            </div>
+
+            <!-- 食事記録 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold text-green-700 mb-4">食事を記録</h3>
+                <form action="/log_diet" method="post" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700">食品名</label>
+                        <input type="text" name="food" class="w-full border-gray-300 rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">カロリー (kcal)</label>
+                        <input type="number" name="calories" class="w-full border-gray-300 rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">タンパク質 (g)</label>
+                        <input type="number" name="protein" class="w-full border-gray-300 rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">炭水化物 (g)</label>
+                        <input type="number" name="carbs" class="w-full border-gray-300 rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">脂質 (g)</label>
+                        <input type="number" name="fat" class="w-full border-gray-300 rounded-lg p-2">
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full">記録</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロフィール</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-50 font-sans leading-normal tracking-normal">
+
+    <!-- ナビゲーションバー -->
+    <nav class="bg-green-600 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Fitness Tracker</h1>
+            <div class="flex space-x-4">
+                <a href="{{ url_for('index') }}" class="text-white hover:text-green-300">ホーム</a>
+                <a href="{{ url_for('logout') }}" class="text-white hover:text-green-300">ログアウト</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- プロフィールコンテンツ -->
+    <main class="container mx-auto mt-8 p-4">
+        <!-- プロフィール情報 -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-xl font-semibold text-green-700 mb-4">ユーザー情報</h2>
+            <p><strong>ユーザー名:</strong> {{ user.username }}</p>
+            <p><strong>メールアドレス:</strong> {{ user.email }}</p>
+            <p><strong>年齢:</strong> {{ user.age }}</p>
+            <p><strong>身長:</strong> {{ user.height }} cm</p>
+            <p><strong>体重:</strong> {{ user.weight }} kg</p>
+        </section>
+
+        <div class="bg-white p-6 rounded-lg shadow-md my-6">
+            <h2 class="text-lg font-semibold text-green-700 mb-4">新しいルーティンタスクを追加</h2>
+            
+            <!-- 新しいタスクの追加フォーム -->
+            <form method="POST" action="{{ url_for('add_task') }}" class="flex flex-col gap-4 mb-4">
+                <label for="task_name" class="text-gray-700">タスク名:</label>
+                <input 
+                    type="text" 
+                    id="task_name" 
+                    name="task_name" 
+                    required 
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+                    placeholder="新しいルーティンタスクを入力">
+                <button 
+                    type="submit" 
+                    class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                    追加
+                </button>
+            </form>
+        
+            <!-- 既存のタスクリスト -->
+            <h2 class="text-lg font-semibold text-green-700 mb-2">現在のルーティンタスク</h2>
+            <ul class="space-y-3">
+                {% for task in user.daily_tasks %}
+                    <li class="flex items-center justify-between bg-gray-50 p-3 rounded-lg shadow-sm">
+                        <span class="text-gray-700">{{ task.task_name }}</span>
+                        <form method="POST" action="{{ url_for('delete_task', task_id=task.id) }}">
+                            <button 
+                                type="submit" 
+                                class="text-red-500 hover:text-red-700 px-3 py-1 text-sm font-medium rounded">
+                                削除
+                            </button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- 目標情報 -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-xl font-semibold text-green-700 mb-4">目標一覧</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                {% if goal %}
+                    <li>カロリー: {{ goal.target_calories }} kcal, 運動時間: {{ goal.target_workout_duration }} 分, 期限: {{ goal.target_date }}</li>
+                {% endif %}
+            </ul>
+        </section>
+
+        <!-- ワークアウト記録 -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-xl font-semibold text-green-700 mb-4">ワークアウト記録</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                {% for workout in workouts %}
+                    <li>{{ workout.date }} - 種類: {{ workout.workout_type }}, 時間: {{ workout.duration }} 分, カロリー: {{ workout.calories }} kcal</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- 食事記録 -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold text-green-700 mb-4">食事記録</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                {% for diet in diets %}
+                    <li>{{ diet.date }} - 食事: {{ diet.food }}, カロリー: {{ diet.calories }} kcal, タンパク質: {{ diet.protein }} g, 炭水化物: {{ diet.carbs }} g, 脂肪: {{ diet.fat }} g</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <h2>獲得したバッジ</h2>
+        <div class="badge-container">
+            {% for user_badge in user.user_badges %}
+                <div class="badge-item">
+                    <img src="{{ url_for('static', filename='images/badges/' + user_badge.badge.icon) }}" alt="{{ user_badge.badge.name }}">
+                    <p>{{ user_badge.badge.name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- プロフィール更新リンク -->
+        <div class="text-center mt-8">
+            <a href="{{ url_for('update_profile') }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">プロフィールを更新</a>
+        </div>
+    </main>
+</body>
+</html>

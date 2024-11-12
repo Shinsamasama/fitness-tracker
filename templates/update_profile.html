@@ -1,0 +1,26 @@
+<!-- templates/update_profile.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>プロフィール更新</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body-update">
+    <div class="profile-container">
+        <h1 class="profile-title">プロフィール更新</h1>
+        <form method="POST" action="{{ url_for('update_profile') }}" class="profile-form">
+            <label for="age" class="profile-label">年齢:</label>
+            <input type="number" id="age" name="age" class="profile-input" value="{{ user.age }}" placeholder="年齢を入力">
+
+            <label for="height" class="profile-label">身長 (cm):</label>
+            <input type="number" id="height" name="height" step="0.1" class="profile-input" value="{{ user.height }}" placeholder="身長を入力">
+
+            <label for="weight" class="profile-label">体重 (kg):</label>
+            <input type="number" id="weight" name="weight" step="0.1" class="profile-input" value="{{ user.weight }}" placeholder="体重を入力">
+
+            <button type="submit" class="profile-button">更新</button>
+        </form>
+    </div>
+</body>
+</html>

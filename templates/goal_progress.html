@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目標達成状況</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- コンテナ -->
+    <div class="container">
+        <!-- タイトル -->
+        <header class="header">
+            <h1>目標達成状況</h1>
+            <p>進捗を確認し、モチベーションを高めましょう</p>
+        </header>
+
+        <!-- カロリーの進捗 -->
+        <section class="progress-section">
+            <h2 class="progress-title">摂取カロリーの進捗</h2>
+            <div class="progress-circle" style="--progress-value: {{ progress.calorie_progress }};">
+                <span>{{ progress.calorie_progress }}%</span>
+            </div>
+            <p class="progress-text">目標に対する進捗状況です</p>
+        </section>
+
+        <!-- 運動時間の進捗 -->
+        <section class="progress-section">
+            <h2 class="progress-title">運動時間の進捗</h2>
+            <div class="progress-circle" style="--progress-value: {{ progress.workout_progress }};">
+                <span>{{ progress.workout_progress }}%</span>
+            </div>
+            <p class="progress-text">目標に対する進捗状況です</p>
+        </section>
+
+        <!-- 目標再設定リンク -->
+        <div class="text-center">
+            <a href="{{ url_for('set_goal') }}" class="reset-goal-button">
+                目標を再設定する
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摂取カロリーの進捗と栄養素比率</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body-calorie">
+    <!-- メインコンテナ -->
+    <div class="calorie-progress-wrapper">
+        <header class="calorie-progress-header">
+            <h1>摂取カロリーの進捗と栄養素比率</h1>
+            <p>摂取状況と栄養素バランスを視覚化しています</p>
+        </header>
+
+        <!-- 折れ線グラフ -->
+        <section class="chart-section">
+            <h2 class="chart-title">摂取カロリー推移</h2>
+            <div class="chart-container">
+                <img src="{{ graph_url }}" alt="摂取カロリーの折れ線グラフ" class="chart-image">
+            </div>
+        </section>
+
+        <!-- 円グラフ -->
+        <section class="chart-section">
+            <h2 class="chart-title">栄養素のカロリー比率</h2>
+            <div class="chart-container">
+                <img src="{{ graph_url2 }}" alt="栄養素のカロリー比率円グラフ" class="chart-image">
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,731 @@
+@charset "UTF-8"; 
+/* fonts & reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fb;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+/* profile.html */
+
+/* container styling */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* header styling */
+.profile-header {
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3a86ff;
+}
+
+/* card styling */
+section {
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+section h2 {
+    font-size: 1.4rem;
+    color: #3a86ff;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+section ul li {
+    margin-bottom: 0.75rem;
+}
+
+section ul li p {
+    margin: 0.25rem 0;
+}
+
+/* goals styling */
+.goals-card, .workouts-card, .diets-card {
+    background-color: #e0f7fa;
+}
+
+.goals-card h2, .workouts-card h2, .diets-card h2 {
+    color: #00796b;
+}
+
+/* button styling */
+.button {
+    display: inline-block;
+    background-color: #3a86ff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+}
+
+.button:hover {
+    background-color: #2962ff;
+}
+
+
+
+/* register.html, login.html */
+
+.body-design {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f4f3;
+    color: #333;
+}
+
+/* Auth Container */
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Title Styling */
+.auth-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #4CAF50;
+}
+
+/* Form Elements */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    color: #4CAF50;
+    text-align: left;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #f5f7f6;
+    border: 1px solid #cdd1cf;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Submit Button */
+.auth-button {
+    padding: 0.8rem;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #45a049;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-top: 1rem;
+}
+
+.flash-messages ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flash-message {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #dff0d8;
+    border-left: 4px solid #4CAF50;
+    color: #333;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+
+
+/* set_goal.html */
+
+.body-goal {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8f5;
+}
+
+.goal-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f7fcf5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.goal-title {
+    font-size: 1.8rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.goal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.goal-label {
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+.goal-input {
+    padding: 0.7rem;
+    border: 1px solid #d1e8d2;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    transition: border-color 0.3s;
+}
+
+.goal-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.goal-button {
+    padding: 0.8rem;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.goal-button:hover {
+    background-color: #45a049;
+}
+
+
+
+/* update_profile.html */
+
+.body-update {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e7f3ed;
+}
+
+.profile-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-title {
+    font-size: 1.8rem;
+    color: #4CAF50;
+    margin-bottom: 1.5rem;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.profile-label {
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+.profile-input {
+    padding: 0.7rem;
+    border: 1px solid #cce5cc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.profile-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.profile-button {
+    padding: 0.8rem;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-button:hover {
+    background-color: #45a049;
+}
+
+
+
+/* goal_progress.html */
+
+/* 基本スタイル */
+.body-progress {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0fdf4; /* 緑系の淡い背景色 */
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* ヘッダー */
+.header h1 {
+    font-size: 1.75rem;
+    color: #16a34a; /* 緑色のタイトル */
+    margin: 0;
+}
+
+.header p {
+    font-size: 1rem;
+    color: #4b5563; /* サブテキストの薄いグレー */
+}
+
+/* 進捗セクション */
+.progress-section {
+    margin: 1.5rem 0;
+}
+
+.progress-title {
+    font-size: 1.25rem;
+    color: #166534;
+    margin-bottom: 1rem;
+}
+
+/* 進捗円のデザイン */
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#16a34a calc(var(--progress-value) * 1%), #d1fae5 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #166534;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-top: 0.5rem;
+}
+
+/* リンクボタン */
+.reset-goal-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #34d399;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.reset-goal-button:hover {
+    background-color: #10b981;
+}
+
+
+
+/* calorie_progress.html */
+
+body.body-calorie {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f8f5;  /* 淡いグリーン */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* メインコンテナ */
+.calorie-progress-wrapper {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* ヘッダー */
+.calorie-progress-header h1 {
+    font-size: 1.8rem;
+    color: #2f855a;
+    margin-bottom: 0.5rem;
+}
+
+.calorie-progress-header p {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+}
+
+/* グラフセクション */
+.chart-section {
+    margin-bottom: 2rem;
+}
+
+.chart-title {
+    font-size: 1.2rem;
+    color: #276749;
+    margin-bottom: 1rem;
+}
+
+/* グラフ画像のコンテナ */
+.chart-container {
+    background-color: #edf7f2;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 再設定ボタン */
+.calorie-reset-goal-wrapper {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.calorie-reset-goal-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #38a169;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.calorie-reset-goal-button:hover {
+    background-color: #2f855a;
+    transform: scale(1.05);
+}
+
+
+/* index.html */
+
+.report-page {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.report-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 各セクション */
+.section-title {
+    font-size: 1.5em;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.report-item {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* グラフのスタイル */
+.graph-container {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.report-graph {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+/* フッター */
+.report-footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #4CAF50;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #45a049;
+}
+
+.today-progress {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.today-progress h2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.today-progress p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+
+
+/* progress.html */
+
+.progress-page {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ヘッダーのスタイル */
+.progress-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.progress-header h1 {
+    color: #3a7a44;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* コンテンツエリア */
+.progress-content {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* グラフ画像のスタイル */
+.progress-graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.progress-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* nutrient_pie_chart.html */
+
+.nutrient-page {
+    font-family: 'Arial', sans-serif;
+    background-color: #f1f9f3;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ヘッダーのスタイル */
+.nutrient-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nutrient-header h1 {
+    color: #2d7a50;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* コンテンツエリア */
+.nutrient-content {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* グラフ画像のスタイル */
+.nutrient-graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.nutrient-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* keep_record.html */
+
+.alert {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;  /* 例: 成功メッセージの背景色 */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 16px;
+}
+
+
+
+
+@media (max-width: 800px) {
+
+    /* index.html */
+
+    .report-content, .today-progress {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 1.2em;
+    }
+
+    .report-item {
+        font-size: 1em;
+    }
+
+    .back-button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+
+}
+
+

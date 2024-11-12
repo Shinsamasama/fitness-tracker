@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>週間・月間レポート</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Tailwind CSSの読み込み -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="report-page">
+    <!-- ナビゲーションバー -->
+    <nav class="bg-green-600 p-4 shadow-lg">
+        <div class="mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Fitness Tracker</h1>
+            <div class="flex space-x-10">
+                <a href="{{ url_for('goal_progress') }}" class="text-white hover:text-green-300">目標達成状況</a>
+                <a href="{{ url_for('profile') }}" class="text-white hover:text-green-300">ユーザー情報</a>
+                <a href="{{ url_for('logout') }}" class="text-white hover:text-green-300">ログアウト</a>
+            </div>
+        </div>
+    </nav>
+
+     <!-- 通知セクション -->
+     <section class="mb-8">
+        <h2 class="text-xl font-semibold text-green-700 mb-4">通知一覧</h2>
+        <div id="notifications" class="bg-white p-6 rounded-lg shadow-md">
+            {% if notifications %}
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    {% for notification in notifications %}
+                        <li>
+                            <span>{{ notification.message }}</span>
+                            <span class="text-sm text-gray-500">- {{ notification.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <form action="{{ url_for('mark_notifications_as_read') }}" method="post" class="mt-4">
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">了解</button>
+                </form>
+            {% else %}
+                <p class="text-gray-500">新しい通知はありません。</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="today-progress">
+        <h2>今日の進捗状況</h2>
+        {% if today_progress %}
+            <p><strong>運動時間:</strong> {{ today_progress.total_workout_duration }} 分 ({{ today_progress.workout_progress }}%)</p>
+            <p><strong>摂取カロリー:</strong> {{ today_progress.total_calories }} kcal ({{ today_progress.calorie_progress }}%)</p>
+        {% else %}
+        <p>今日の記録はありません</p>
+        {% endif %}
+    </section>
+
+    <h2 class="text-xl font-semibold text-green-700 ml-4">今日のルーティンタスク</h2>
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <ul class="list-disc list-inside text-gray-700 space-y-2">
+            {% if user %}
+                {% for task in user.daily_tasks %}
+                    <li class="flex items-center">
+                        <input 
+                            type="checkbox" 
+                            data-task-id="{{ task.id }}" 
+                            class="task-checkbox h-5 w-5 text-green-600 focus:ring-green-500 rounded"
+                            {% if task.is_completed_today %}checked{% endif %}>
+                        <label class="ml-3 text-gray-700">{{ task.task_name }}</label>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>ユーザー情報が読み込まれていません</p>
+            {% endif %}
+        </ul>
+    </div>
+
+    <main class="report-content">
+        <section class="weekly-report">
+            <h2 class="section-title">週間レポート</h2>
+            <p class="report-item"><strong>総運動時間:</strong>
+            {% if weekly_report %}
+                {{ weekly_report.total_workout_duration }}分</p>
+            {% else %}
+                <p>データがありません</p>
+            {% endif %}
+            <a href="{{ url_for('workout_progress') }}" class="text-blue-500 hover:text-blue-700 text-sm ml-2">詳細を見る</a>
+            <p class="report-item"><strong>総摂取カロリー:</strong>
+            {% if weekly_report %}
+                {{ weekly_report.total_calories }} kcal</p>
+            {% else %}
+                <p>データがありません</p>
+            {% endif %}
+            <a href="{{ url_for('calorie_progress') }}" class="text-blue-500 hover:text-blue-700 text-sm ml-2">詳細を見る</a>
+            <div class="graph-container">
+                <img src="{{ weekly_graph_url }}" alt="週間の運動と摂取カロリーのグラフ" class="report-graph">
+            </div>
+        </section>
+
+        <section class="monthly-report">
+            <h2 class="section-title">月間レポート</h2>
+            <p class="report-item"><strong>総運動時間:</strong>
+            {% if monthly_report %}
+                {{ monthly_report.total_workout_duration }} 分</p>
+            {% else %}
+                <p>データがありません</p>
+            {% endif %}
+            <a href="{{ url_for('workout_progress') }}" class="text-blue-500 hover:text-blue-700 text-sm ml-2">詳細を見る</a>
+            <p class="report-item"><strong>総摂取カロリー:</strong>
+            {% if monthly_report %}
+                {{ monthly_report.total_calories }} kcal</p>
+            {% else %}
+                <p>データがありません</p>
+            {% endif %}
+            <a href="{{ url_for('calorie_progress') }}" class="text-blue-500 hover:text-blue-700 text-sm ml-2">詳細を見る</a>
+            <div class="graph-container">
+                <img src="{{ monthly_graph_url }}" alt="月間の運動と摂取カロリーのグラフ" class="report-graph">
+            </div>
+        </section>
+    </main>
+
+    <footer class="report-footer">
+        <a href="{{ url_for('keep_record') }}" class="back-button">食事・運動を記録する</a>
+    </footer>
+</body>
+</html>
