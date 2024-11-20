@@ -425,6 +425,15 @@ def create_report_graph(user_id, days):
         df_diet = pd.DataFrame(columns=['date', 'calories'])
     else:
         df_diet = pd.DataFrame(diet_data).groupby('date').sum().reset_index()
+
+
+    # 日付データをdatetime型に変換
+    df_workout['date'] = pd.to_datetime(df_workout['date'], errors='coerce')
+    df_diet['date'] = pd.to_datetime(df_diet['date'], errors='coerce')
+
+    # NaTを削除
+    df_workout = df_workout.dropna(subset=['date'])
+    df_diet = df_diet.dropna(subset=['date'])
     
 
     # グラフの作成
